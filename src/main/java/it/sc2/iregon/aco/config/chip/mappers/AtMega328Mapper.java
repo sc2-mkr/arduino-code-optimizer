@@ -2,13 +2,13 @@ package it.sc2.iregon.aco.config.chip.mappers;
 
 import it.sc2.iregon.aco.config.chip.structure.Pin;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+// TODO: replace AtMega328Mapper with ArduinoUNOMapper
 public class AtMega328Mapper implements Mapper {
 
     private final List<Pin> pins = new ArrayList<Pin>();
+    private final Map<String, String> constants = new HashMap<String, String>();
 
     public AtMega328Mapper() {
         // Add all pins
@@ -26,6 +26,9 @@ public class AtMega328Mapper implements Mapper {
         addPin("11", "17", "B", "3"); // D11
         addPin("12", "18", "B", "4"); // D12
         addPin("13", "19", "B", "5"); // D13
+
+        // Add built-in constants
+        constants.put("LED_BUILTIN", "13");
     }
 
     @Override
@@ -56,5 +59,10 @@ public class AtMega328Mapper implements Mapper {
     @Override
     public String getMapName() {
         return "ATmega8/168/328";
+    }
+
+    @Override
+    public String getConstantValue(String constant) {
+        return constants.get(constant);
     }
 }

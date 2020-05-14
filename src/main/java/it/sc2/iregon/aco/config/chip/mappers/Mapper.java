@@ -2,6 +2,7 @@ package it.sc2.iregon.aco.config.chip.mappers;
 
 import it.sc2.iregon.aco.config.chip.structure.Pin;
 
+import java.util.Map;
 import java.util.Optional;
 
 public interface Mapper {
@@ -12,4 +13,6 @@ public interface Mapper {
     Optional<Pin> findPinByLogicalName(String logicIndex);
 
     String getMapName();
+
+    String getConstantValue(String constant);
 }
