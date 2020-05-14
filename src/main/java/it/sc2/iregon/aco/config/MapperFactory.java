@@ -1,7 +1,6 @@
 package it.sc2.iregon.aco.config;
 
 import it.sc2.iregon.aco.config.chip.mappers.Mapper;
-import it.sc2.iregon.aco.engine.plugin.plugins.Plugin;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Constructor;
@@ -38,6 +37,7 @@ public class MapperFactory {
 
     /**
      * Get mapping of a chip
+     *
      * @param chip chip name <br>
      *             Chip supported:
      *             <ul>

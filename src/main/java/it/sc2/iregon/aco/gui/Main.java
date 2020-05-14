@@ -10,15 +10,15 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception{
+    public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/main.fxml"));
-        Parent root = (Parent)loader.load();
+        Parent root = loader.load();
         stage.setTitle("ACO - Arduino Code Optimizer");
         stage.setScene(new Scene(root));
         stage.getIcons().add(new Image(Main.class.getResourceAsStream("/favicon.png")));
 
         // Pass stage to controller
-        Controller controller = (Controller)loader.getController();
+        Controller controller = loader.getController();
         controller.setStage(stage);
 
         stage.show();

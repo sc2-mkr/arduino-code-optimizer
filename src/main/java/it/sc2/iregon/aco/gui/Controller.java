@@ -1,9 +1,9 @@
 package it.sc2.iregon.aco.gui;
 
 import com.jfoenix.controls.JFXCheckBox;
-import it.sc2.iregon.aco.engine.AcoEngine;
-import it.sc2.iregon.aco.config.chip.mappers.Mapper;
 import it.sc2.iregon.aco.config.MapperFactory;
+import it.sc2.iregon.aco.config.chip.mappers.Mapper;
+import it.sc2.iregon.aco.engine.AcoEngine;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -21,6 +21,10 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Controller {
+
+    // Chooser
+    private final FileChooser sourceSketchChooser = new FileChooser();
+    private final DirectoryChooser destDirectoryChooser = new DirectoryChooser();
 
     // Optimization Engine
     MapperFactory mappingFactory;
@@ -49,12 +53,9 @@ public class Controller {
 
     // Source file
     private File sourceFile;
+
     // Destination path
     private File destinationPath;
-
-    // Chooser
-    private final FileChooser sourceSketchChooser = new FileChooser();
-    private final DirectoryChooser destDirectoryChooser = new DirectoryChooser();
 
     @FXML
     public void initialize() {
@@ -70,12 +71,10 @@ public class Controller {
 
         // Init engine
         engine = new AcoEngine();
-//        engine.setOption("setup-and-loop", ckbRemoveSetupLoop.isSelected());
-//        engine.setOption("pin-mode", ckbPinMode.isSelected());
 
         // Add option from loaded plugins
         engine.getAllPlugins().forEach(plugin -> {
-            JFXCheckBox checkBox = generateOptionCheckbox(plugin.getPluginName(), plugin.getViewOption().isEnableAsDefult());
+            JFXCheckBox checkBox = generateOptionCheckbox(plugin.getPluginName(), plugin.getViewOption().isEnableAsDefault());
             vboxOptions.getChildren().add(checkBox);
             System.out.println("Added plugin: " + checkBox.getText());
         });
@@ -86,7 +85,7 @@ public class Controller {
                 mappingFactory.getAllMapping().stream()
                         .map(Mapper::getMapName)
                         .collect(Collectors.toList())));
-        if(comboChips.getItems().size() > 0) comboChips.getSelectionModel().select(0);
+        if (comboChips.getItems().size() > 0) comboChips.getSelectionModel().select(0);
     }
 
     public JFXCheckBox generateOptionCheckbox(String value, boolean selected) {
@@ -157,7 +156,7 @@ public class Controller {
         engine.setChip(comboChips.getSelectionModel().getSelectedItem());
 
         vboxOptions.getChildren().forEach(node -> {
-            JFXCheckBox checkbox = (JFXCheckBox)node;
+            JFXCheckBox checkbox = (JFXCheckBox) node;
             engine.setOption(checkbox.getText(), checkbox.isSelected());
         });
 

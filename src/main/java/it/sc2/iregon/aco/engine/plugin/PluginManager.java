@@ -33,10 +33,6 @@ public class PluginManager {
         });
     }
 
-    public int getPluginsNum() {
-        return plugins.size();
-    }
-
     public List<Plugin> getAllPlugins() {
         return plugins;
     }
@@ -47,7 +43,7 @@ public class PluginManager {
                 .findFirst()
                 .orElse(null);
 
-        if(pluginToRun == null) throw new PluginNotFoundException(name);
+        if (pluginToRun == null) throw new PluginNotFoundException(name);
 
         pluginToRun.load(source, pinMapping);
         return pluginToRun.run();

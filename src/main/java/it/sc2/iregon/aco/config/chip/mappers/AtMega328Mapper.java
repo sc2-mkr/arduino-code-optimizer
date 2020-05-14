@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class AtMega328Mapper implements Mapper {
 
-    private List<Pin> pins = new ArrayList<Pin>();
+    private final List<Pin> pins = new ArrayList<Pin>();
 
     public AtMega328Mapper() {
         // Add all pins
@@ -35,8 +35,8 @@ public class AtMega328Mapper implements Mapper {
 
     @Override
     public void removePin(String logicIndex) {
-        for(Pin pin : pins) {
-            if(pin.getLogicIndex().equals(logicIndex)) {
+        for (Pin pin : pins) {
+            if (pin.getLogicIndex().equals(logicIndex)) {
                 pins.remove(pin);
                 break;
             }
@@ -45,8 +45,8 @@ public class AtMega328Mapper implements Mapper {
 
     @Override
     public Optional<Pin> findPinByLogicalName(String logicIndex) {
-        for(Pin pin : pins) {
-            if(pin.getLogicIndex().equals(logicIndex)) {
+        for (Pin pin : pins) {
+            if (pin.getLogicIndex().equals(logicIndex)) {
                 return Optional.of(pin);
             }
         }

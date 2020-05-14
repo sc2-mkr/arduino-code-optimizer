@@ -10,15 +10,15 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DigitalWritePlugin implements Plugin{
-
-    private String source;
-    private Mapper pinMapping;
-
-    ViewOption viewOption;
+public class DigitalWritePlugin implements Plugin {
 
     // sketch constants
     private final List<Constant> constants;
+
+    ViewOption viewOption;
+
+    private String source;
+    private Mapper pinMapping;
 
     public DigitalWritePlugin() {
         this.viewOption = new ViewOption(true);
@@ -60,13 +60,13 @@ public class DigitalWritePlugin implements Plugin{
                 if (pinToReplace.isPresent()) {
                     String replacement = "PORT" +
                             pinToReplace.get().getPort();
-                    if(matcher.group(2).equals("HIGH"))
+                    if (matcher.group(2).equals("HIGH"))
                         replacement += " |= " +
-                            getPortSettingBits(
-                                    pinToReplace.get().getPortIndex(),
-                                    "0",
-                                    "1");
-                    else if(matcher.group(2).equals("LOW"))
+                                getPortSettingBits(
+                                        pinToReplace.get().getPortIndex(),
+                                        "0",
+                                        "1");
+                    else if (matcher.group(2).equals("LOW"))
                         replacement += " &= " +
                                 getPortSettingBits(
                                         pinToReplace.get().getPortIndex(),
