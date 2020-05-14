@@ -32,6 +32,6 @@ void loop() {
   delay(1000);                       
 }
 ```
-we have 854 bytes used in memory, 58% less memory used.
+we have 854 bytes used in memory, 42% less memory used.
 
 **Attention: the use of this tool on your sketch could make it to lose portability between the different Arduino microcontrollers**
