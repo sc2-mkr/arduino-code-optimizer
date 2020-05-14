@@ -10,15 +10,15 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PinModePlugin implements Plugin{
+public class PinModePlugin implements Plugin {
+
+    // sketch constants
+    private final List<Constant> constants;
 
     String source;
     Mapper pinMapping;
 
     ViewOption viewOption;
-
-    // sketch constants
-    private final List<Constant> constants;
 
     public PinModePlugin() {
         this.viewOption = new ViewOption(true);

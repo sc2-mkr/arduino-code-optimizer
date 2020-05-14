@@ -1,7 +1,7 @@
 package it.sc2.iregon.aco.engine;
 
-import it.sc2.iregon.aco.config.chip.mappers.Mapper;
 import it.sc2.iregon.aco.config.MapperFactory;
+import it.sc2.iregon.aco.config.chip.mappers.Mapper;
 import it.sc2.iregon.aco.engine.plugin.PluginManager;
 import it.sc2.iregon.aco.engine.plugin.exceptions.PluginNotFoundException;
 import it.sc2.iregon.aco.engine.plugin.plugins.Plugin;
@@ -9,28 +9,26 @@ import it.sc2.iregon.aco.engine.structure.Constant;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AcoEngine implements Engine {
+
+    private final Map<String, Boolean> options;
 
     // Arduino port mapping
     MapperFactory mappingFactory;
     Mapper portMapping;
-    private String source;
-    private final Map<String, Boolean> options;
     PluginManager pluginManager;
-
+    private String source;
 
     // Execution variables
-    private int startSetupIndex = -1;
-    private int endSetupIndex = -1;
-    private int startLoopIndex = -1;
-    private int endLoopIndex = -1;
-
-    // Sketch variables and constants
-    private final List<Constant> constants;
+//    private final int startSetupIndex = -1;
+//    private final int endSetupIndex = -1;
+//    private final int startLoopIndex = -1;
+//    private final int endLoopIndex = -1;
 
     public AcoEngine() {
         options = new HashMap<>();
@@ -39,7 +37,7 @@ public class AcoEngine implements Engine {
         mappingFactory = new MapperFactory();
         pluginManager = new PluginManager();
 
-        constants = new ArrayList<>();
+//        constants = new ArrayList<>();
     }
 
     @Override
@@ -49,7 +47,6 @@ public class AcoEngine implements Engine {
     }
 
     public void setOption(String option, boolean state) {
-        System.out.println("Option: " + option + " " + state);
         this.options.put(option, state);
     }
 
@@ -64,8 +61,7 @@ public class AcoEngine implements Engine {
     @Override
     public void optimize() {
         this.options.forEach((pluginName, isActive) -> {
-            System.out.println(pluginName + " " + isActive);
-            if(isActive) {
+            if (isActive) {
                 try {
                     source = pluginManager.runPlugin(pluginName, source, portMapping);
                 } catch (PluginNotFoundException e) {
@@ -74,27 +70,6 @@ public class AcoEngine implements Engine {
             }
         });
     }
-
-    private void findAllConstants() {
-        // Const variables
-        final String constRegex = "const\\s+([^\\s]+)\\s+([^\\s]+)\\s+=\\s+([^;]+)";
-        final Pattern constPattern = Pattern.compile(constRegex, Pattern.MULTILINE);
-        final Matcher constMatcher = constPattern.matcher(source);
-
-        while (constMatcher.find()) {
-            constants.add(new Constant(constMatcher.group(2), constMatcher.group(3), Constant.Type.CONST));
-        }
-
-        // DEFINE
-        final String defineRegex = "#define\\s*([^\\s]+)\\s*(.*)";
-        final Pattern definePattern = Pattern.compile(defineRegex, Pattern.MULTILINE);
-        final Matcher defineMatcher = definePattern.matcher(source);
-
-        while (defineMatcher.find()) {
-            constants.add(new Constant(defineMatcher.group(1), defineMatcher.group(2), Constant.Type.DEFINE));
-        }
-    }
-
 
 //    private void removeSetupAndLoop() {
 //        String setup = source.substring(startSetupIndex, endSetupIndex);

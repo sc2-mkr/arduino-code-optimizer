@@ -2,15 +2,8 @@ package it.sc2.iregon.aco.engine.structure;
 
 public class Constant {
 
-    public enum Type {
-        CONST,
-        DEFINE
-    }
-
     private Type type;
-
     private String name;
-
     private String value;
 
     public Constant(String name, String value, Type type) {
@@ -41,5 +34,10 @@ public class Constant {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public enum Type {
+        CONST,
+        DEFINE
     }
 }

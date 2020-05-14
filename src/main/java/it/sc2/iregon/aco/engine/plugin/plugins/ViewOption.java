@@ -1,13 +1,13 @@
 package it.sc2.iregon.aco.engine.plugin.plugins;
 
 public class ViewOption {
-    private final boolean enableAsDefult;
+    private final boolean enableAsDefault;
 
-    public ViewOption(boolean enableAsDefult) {
-        this.enableAsDefult = enableAsDefult;
+    public ViewOption(boolean enableAsDefault) {
+        this.enableAsDefault = enableAsDefault;
     }
 
-    public boolean isEnableAsDefult() {
-        return enableAsDefult;
+    public boolean isEnableAsDefault() {
+        return enableAsDefault;
     }
 }
