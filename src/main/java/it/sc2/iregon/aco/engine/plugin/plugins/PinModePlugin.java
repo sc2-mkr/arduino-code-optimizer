@@ -83,9 +83,11 @@ public class PinModePlugin implements Plugin {
             Integer.parseInt(logicalIndex);
             return logicalIndex;
         } catch (NumberFormatException e) {
-            return constants.stream()
+            Optional<Constant> res = constants.stream()
                     .filter(constant -> constant.getName().equals(logicalIndex))
-                    .findFirst().get().getValue();
+                    .findFirst();
+            if(res.isPresent()) return res.get().getValue();
+            else return pinMapping.getConstantValue(logicalIndex);
         }
     }
 
