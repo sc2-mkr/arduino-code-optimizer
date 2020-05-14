@@ -1,10 +1,8 @@
 package it.sc2.iregon.aco.engine.plugin;
 
-import com.jfoenix.controls.JFXCheckBox;
-import it.sc2.iregon.aco.config.Mapping;
+import it.sc2.iregon.aco.config.chip.mappers.Mapper;
 import it.sc2.iregon.aco.engine.plugin.exceptions.PluginNotFoundException;
 import it.sc2.iregon.aco.engine.plugin.plugins.Plugin;
-import javafx.scene.paint.Paint;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Constructor;
@@ -43,7 +41,7 @@ public class PluginManager {
         return plugins;
     }
 
-    public String runPlugin(String name, String source, Mapping pinMapping) throws PluginNotFoundException {
+    public String runPlugin(String name, String source, Mapper pinMapping) throws PluginNotFoundException {
         Plugin pluginToRun = plugins.stream()
                 .filter(plugin -> plugin.getPluginName().equals(name))
                 .findFirst()

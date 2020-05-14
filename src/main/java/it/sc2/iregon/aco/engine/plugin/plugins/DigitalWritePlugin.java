@@ -1,7 +1,7 @@
 package it.sc2.iregon.aco.engine.plugin.plugins;
 
-import it.sc2.iregon.aco.config.Mapping;
-import it.sc2.iregon.aco.config.structure.Pin;
+import it.sc2.iregon.aco.config.chip.mappers.Mapper;
+import it.sc2.iregon.aco.config.chip.structure.Pin;
 import it.sc2.iregon.aco.engine.structure.Constant;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class DigitalWritePlugin implements Plugin{
 
     private String source;
-    private Mapping pinMapping;
+    private Mapper pinMapping;
 
     ViewOption viewOption;
 
@@ -36,7 +36,7 @@ public class DigitalWritePlugin implements Plugin{
     }
 
     @Override
-    public void load(String source, Mapping pinMapping) {
+    public void load(String source, Mapper pinMapping) {
         this.source = source;
         this.pinMapping = pinMapping;
     }

@@ -2,9 +2,8 @@ package it.sc2.iregon.aco.gui;
 
 import com.jfoenix.controls.JFXCheckBox;
 import it.sc2.iregon.aco.engine.AcoEngine;
-import it.sc2.iregon.aco.config.Mapping;
-import it.sc2.iregon.aco.config.MappingFactory;
-import it.sc2.iregon.aco.engine.plugin.plugins.Plugin;
+import it.sc2.iregon.aco.config.chip.mappers.Mapper;
+import it.sc2.iregon.aco.config.MapperFactory;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -18,15 +17,13 @@ import javafx.stage.Stage;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.*;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Controller {
 
     // Optimization Engine
-    MappingFactory mappingFactory;
+    MapperFactory mappingFactory;
     AcoEngine engine;
 
     // GUI components
@@ -84,10 +81,10 @@ public class Controller {
         });
 
         // Add chips mapper to combobox
-        mappingFactory = new MappingFactory();
+        mappingFactory = new MapperFactory();
         comboChips.setItems(FXCollections.observableArrayList(
                 mappingFactory.getAllMapping().stream()
-                        .map(Mapping::getMapName)
+                        .map(Mapper::getMapName)
                         .collect(Collectors.toList())));
         if(comboChips.getItems().size() > 0) comboChips.getSelectionModel().select(0);
     }
