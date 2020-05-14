@@ -1,16 +1,16 @@
-package it.sc2.iregon.aco.config;
+package it.sc2.iregon.aco.config.chip.mappers;
 
-import it.sc2.iregon.aco.config.structure.Pin;
+import it.sc2.iregon.aco.config.chip.structure.Pin;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class AtMega328Mapping implements Mapping {
+public class AtMega328Mapper implements Mapper {
 
     private List<Pin> pins = new ArrayList<Pin>();
 
-    public AtMega328Mapping() {
+    public AtMega328Mapper() {
         // Add all pins
         addPin("0", "2", "D", "0"); // RX
         addPin("1", "3", "D", "1"); // TX

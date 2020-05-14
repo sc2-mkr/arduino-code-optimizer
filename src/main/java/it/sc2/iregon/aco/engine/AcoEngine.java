@@ -1,7 +1,7 @@
 package it.sc2.iregon.aco.engine;
 
-import it.sc2.iregon.aco.config.Mapping;
-import it.sc2.iregon.aco.config.MappingFactory;
+import it.sc2.iregon.aco.config.chip.mappers.Mapper;
+import it.sc2.iregon.aco.config.MapperFactory;
 import it.sc2.iregon.aco.engine.plugin.PluginManager;
 import it.sc2.iregon.aco.engine.plugin.exceptions.PluginNotFoundException;
 import it.sc2.iregon.aco.engine.plugin.plugins.Plugin;
@@ -16,8 +16,8 @@ import java.util.regex.Pattern;
 public class AcoEngine implements Engine {
 
     // Arduino port mapping
-    MappingFactory mappingFactory;
-    Mapping portMapping;
+    MapperFactory mappingFactory;
+    Mapper portMapping;
     private String source;
     private final Map<String, Boolean> options;
     PluginManager pluginManager;
@@ -36,7 +36,7 @@ public class AcoEngine implements Engine {
         options = new HashMap<>();
 
         // TODO: add a menu for mapper selection
-        mappingFactory = new MappingFactory();
+        mappingFactory = new MapperFactory();
         pluginManager = new PluginManager();
 
         constants = new ArrayList<>();

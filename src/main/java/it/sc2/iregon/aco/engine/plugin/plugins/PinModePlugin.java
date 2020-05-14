@@ -1,8 +1,7 @@
 package it.sc2.iregon.aco.engine.plugin.plugins;
 
-import it.sc2.iregon.aco.config.Mapping;
-import it.sc2.iregon.aco.config.MappingFactory;
-import it.sc2.iregon.aco.config.structure.Pin;
+import it.sc2.iregon.aco.config.chip.mappers.Mapper;
+import it.sc2.iregon.aco.config.chip.structure.Pin;
 import it.sc2.iregon.aco.engine.structure.Constant;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.regex.Pattern;
 public class PinModePlugin implements Plugin{
 
     String source;
-    Mapping pinMapping;
+    Mapper pinMapping;
 
     ViewOption viewOption;
 
@@ -37,7 +36,7 @@ public class PinModePlugin implements Plugin{
     }
 
     @Override
-    public void load(String source, Mapping pinMapping) {
+    public void load(String source, Mapper pinMapping) {
         this.source = source;
         this.pinMapping = pinMapping;
     }

@@ -1,4 +1,4 @@
-package it.sc2.iregon.aco.config.structure;
+package it.sc2.iregon.aco.config.chip.structure;
 
 public class Pin {
     private String logicIndex;
