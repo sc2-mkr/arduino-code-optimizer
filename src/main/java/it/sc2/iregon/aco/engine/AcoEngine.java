@@ -33,7 +33,7 @@ public class AcoEngine implements Engine {
     private final List<Constant> constants;
 
     public AcoEngine() {
-        options = new HashMap();
+        options = new HashMap<>();
 
         // TODO: add a menu for mapper selection
         mappingFactory = new MappingFactory();
@@ -63,8 +63,6 @@ public class AcoEngine implements Engine {
 
     @Override
     public void optimize() {
-//        findAllConstants();
-
         this.options.forEach((pluginName, isActive) -> {
             System.out.println(pluginName + " " + isActive);
             if(isActive) {
@@ -75,16 +73,6 @@ public class AcoEngine implements Engine {
                 }
             }
         });
-
-//        System.out.println("#### SOURCE ####\n" + source);
-//        if (options.get("pin-mode")) optimizePinMode();
-//
-//        if (options.get("setup-and-loop")) { // Execute for last (the most destructive operation)
-//            setSetupIndexes();
-//            setLoopIndexes();
-//            removeSetupAndLoop();
-//        }
-
     }
 
     private void findAllConstants() {
@@ -107,64 +95,6 @@ public class AcoEngine implements Engine {
         }
     }
 
-//    private void optimizePinMode() {
-//        StringBuilder sb = new StringBuilder();
-//
-//        final String regex = "pinMode\\(([^,]*),\\s*([^)]*)\\)";
-//        final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
-//        final Matcher matcher = pattern.matcher(source);
-//
-//        boolean result = matcher.find();
-//
-//        if (result) {
-//            do {
-//                String logicalPinName = getLogicalPinName(matcher.group(1));
-//                Optional<Pin> pinToReplace = portMapping.findPinByLogicalPin(logicalPinName);
-//                if (pinToReplace.isPresent()) {
-//                    String replacement = "";
-//                    if (matcher.group(2).equals("OUTPUT"))
-//                        replacement = "DDR" +
-//                                pinToReplace.get().getPort() +
-//                                " |= (1<<DD" +
-//                                pinToReplace.get().getPort() +
-//                                pinToReplace.get().getPortIndex() +
-//                                ")";
-//                    System.out.println("Replacement: " + replacement);
-//                    matcher.appendReplacement(sb, replacement);
-//                } else {
-//                    // TODO: manage pin not found
-//                }
-//                result = matcher.find();
-//            } while (result);
-//            matcher.appendTail(sb);
-//        }
-//        source = sb.toString();
-//    }
-
-//    private String getLogicalPinName(String logicalIndex) {
-//        try {
-//            Integer.parseInt(logicalIndex);
-//            return logicalIndex;
-//        } catch (NumberFormatException e) {
-//            return constants.stream()
-//                    .filter(constant -> constant.getName().equals(logicalIndex))
-//                    .findFirst().get().getValue();
-//        }
-//    }
-
-//    private String getDirectionBits(String portIndex) {
-//        int portIndexInt = Integer.parseInt(portIndex);
-//        StringBuilder retValue = new StringBuilder();
-//
-//        for (int i = 0; i < (8 - portIndexInt) - 1; i++) {
-//            retValue.append("0");
-//        }
-//        retValue.append("1");
-//        for (int i = (8 - portIndexInt); i < 8; i++) {
-//            retValue.append("0");
-//        }
-//        return retValue.toString();
-//    }
 
 //    private void removeSetupAndLoop() {
 //        String setup = source.substring(startSetupIndex, endSetupIndex);
