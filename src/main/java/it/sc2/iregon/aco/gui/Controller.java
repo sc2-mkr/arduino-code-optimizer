@@ -7,6 +7,7 @@ import it.sc2.iregon.aco.config.MappingFactory;
 import it.sc2.iregon.aco.engine.plugin.plugins.Plugin;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -95,6 +96,7 @@ public class Controller {
         JFXCheckBox checkBox = new JFXCheckBox(value);
         checkBox.checkedColorProperty().set(Paint.valueOf("#03a9f4"));
         checkBox.setSelected(selected);
+        checkBox.setPadding(new Insets(0, 0, 5, 0));
 
         checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             engine.setOption(checkBox.getText(), newValue);
