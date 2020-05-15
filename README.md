@@ -7,7 +7,7 @@ All references to the ports used by the microcontroller can be found in its data
 
 ## Getting started
 ### Prerequisites
-For launching thi software you need:
+For launching this software you need:
  - Java 11
 
 ## Optimization Example
