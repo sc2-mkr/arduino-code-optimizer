@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import it.sc2.iregon.aco.config.MapperFactory;
 import it.sc2.iregon.aco.config.chip.mappers.Mapper;
 import it.sc2.iregon.aco.engine.AcoEngine;
+import it.sc2.iregon.aco.engine.plugin.plugins.Plugin;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -74,7 +75,10 @@ public class Controller {
 
         // Add option from loaded plugins
         engine.getAllPlugins().forEach(plugin -> {
-            JFXCheckBox checkBox = generateOptionCheckbox(plugin.getPluginName(), plugin.getViewOption().isEnableAsDefault());
+            JFXCheckBox checkBox = generateOptionCheckbox(
+                    plugin.getPluginName(),
+                    plugin.getImpactType(),
+                    plugin.getViewOption().isEnableAsDefault());
             vboxOptions.getChildren().add(checkBox);
             System.out.println("Added plugin: " + checkBox.getText());
         });
@@ -88,9 +92,10 @@ public class Controller {
         if (comboChips.getItems().size() > 0) comboChips.getSelectionModel().select(0);
     }
 
-    public JFXCheckBox generateOptionCheckbox(String value, boolean selected) {
+    public JFXCheckBox generateOptionCheckbox(String value, Plugin.ImpactLevelType impactLevel, boolean selected) {
         JFXCheckBox checkBox = new JFXCheckBox(value);
         checkBox.checkedColorProperty().set(Paint.valueOf("#03a9f4"));
+        checkBox.getStyleClass().add("jfx-checkbox-options-" + impactLevel.toString().toLowerCase());
         checkBox.setSelected(selected);
         checkBox.setPadding(new Insets(0, 0, 5, 0));
 
