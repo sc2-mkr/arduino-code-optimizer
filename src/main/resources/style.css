@@ -1,0 +1,11 @@
+.jfx-checkbox-options-low {
+    -fx-text-fill: black;
+}
+
+.jfx-checkbox-options-medium {
+    -fx-text-fill: orange;
+}
+
+.jfx-checkbox-options-high {
+    -fx-text-fill: red;
+}

@@ -14,7 +14,11 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/main.fxml"));
         Parent root = loader.load();
         stage.setTitle("ACO - Arduino Code Optimizer");
-        stage.setScene(new Scene(root));
+
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("style.css");
+
+        stage.setScene(scene);
         stage.getIcons().add(new Image(Main.class.getResourceAsStream("/favicon.png")));
 
         // Pass stage to controller
