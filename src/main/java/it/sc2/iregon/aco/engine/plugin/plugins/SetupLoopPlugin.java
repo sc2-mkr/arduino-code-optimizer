@@ -85,32 +85,6 @@ public class SetupLoopPlugin implements Plugin{
         return -1;
     }
 
-//    private void setSetupIndexes() {
-//        final String setupRegex = "void setup\\(\\)\\s*\\{";
-//        Matcher setupMatcher = getRegexMatcher(setupRegex);
-//
-//        if (setupMatcher.find()) {
-//            startSetupIndex = setupMatcher.end() + 1; // Remove first bracket
-//
-//            int childIndex = 0;
-//            char[] remainingCharsArray = source.substring(startSetupIndex).toCharArray();
-//            for (int i = 0; i < remainingCharsArray.length; i++) {
-//                if (remainingCharsArray[i] == '{') childIndex++;
-//                else if (remainingCharsArray[i] == '}') {
-//                    childIndex--;
-//                    if (childIndex < 0) {
-//                        endSetupIndex = (i + startSetupIndex) - 1; // Remove last bracket
-//                        break;
-//                    }
-//                }
-//            }
-//            // TODO: manage setup end not fount
-//        } else {
-//            // TODO: manage setup start not fount
-//        }
-//    }
-
-    // FIX
     private void setLoopIndexes() {
         final String loopRegex = "void loop\\(\\)\\s*\\{";
         Matcher loopMatcher = getRegexMatcher(loopRegex);
@@ -146,5 +120,10 @@ public class SetupLoopPlugin implements Plugin{
     @Override
     public ViewOption getViewOption() {
         return viewOption;
+    }
+
+    @Override
+    public ImpactLevelType getImpactType() {
+        return ImpactLevelType.HIGH;
     }
 }

@@ -2,6 +2,7 @@ package it.sc2.iregon.aco.engine.plugin.plugins;
 
 import it.sc2.iregon.aco.config.chip.mappers.Mapper;
 import it.sc2.iregon.aco.config.chip.structure.Pin;
+import it.sc2.iregon.aco.engine.plugin.ui.ViewOption;
 import it.sc2.iregon.aco.engine.structure.Constant;
 
 import java.util.ArrayList;
@@ -15,10 +16,10 @@ public class PinModePlugin implements Plugin {
     // sketch constants
     private final List<Constant> constants;
 
-    String source;
-    Mapper pinMapping;
+    private String source;
+    private Mapper pinMapper;
 
-    ViewOption viewOption;
+    private ViewOption viewOption;
 
     public PinModePlugin() {
         this.viewOption = new ViewOption(true);
@@ -36,9 +37,9 @@ public class PinModePlugin implements Plugin {
     }
 
     @Override
-    public void load(String source, Mapper pinMapping) {
+    public void load(String source, Mapper pinMapper) {
         this.source = source;
-        this.pinMapping = pinMapping;
+        this.pinMapper = pinMapper;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class PinModePlugin implements Plugin {
         if (result) {
             do {
                 String logicalPinName = getLogicalPinName(matcher.group(1));
-                Optional<Pin> pinToReplace = pinMapping.findPinByLogicalName(logicalPinName);
+                Optional<Pin> pinToReplace = pinMapper.findPinByLogicalName(logicalPinName);
                 if (pinToReplace.isPresent()) {
                     String replacement = "";
                     if (matcher.group(2).equals("OUTPUT"))
@@ -87,7 +88,7 @@ public class PinModePlugin implements Plugin {
                     .filter(constant -> constant.getName().equals(logicalIndex))
                     .findFirst();
             if(res.isPresent()) return res.get().getValue();
-            else return pinMapping.getConstantValue(logicalIndex);
+            else return pinMapper.getConstantValue(logicalIndex);
         }
     }
 
@@ -114,5 +115,10 @@ public class PinModePlugin implements Plugin {
     @Override
     public ViewOption getViewOption() {
         return viewOption;
+    }
+
+    @Override
+    public ImpactLevelType getImpactType() {
+        return ImpactLevelType.LOW;
     }
 }
