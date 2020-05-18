@@ -4,13 +4,12 @@ import it.sc2.iregon.aco.config.chip.structure.Pin;
 
 import java.util.*;
 
-// TODO: replace AtMega328Mapper with ArduinoUNOMapper
-public class AtMega328Mapper implements Mapper {
+public class ArduinoUnoMapper implements Mapper {
 
     private final List<Pin> pins = new ArrayList<Pin>();
     private final Map<String, String> constants = new HashMap<String, String>();
 
-    public AtMega328Mapper() {
+    public ArduinoUnoMapper() {
         // Add all pins
         addPin("0", "2", "D", "0"); // RX
         addPin("1", "3", "D", "1"); // TX
@@ -58,7 +57,7 @@ public class AtMega328Mapper implements Mapper {
 
     @Override
     public String getMapName() {
-        return "ATmega8/168/328";
+        return "Arduino UNO";
     }
 
     @Override
