@@ -18,26 +18,18 @@ public class AcoEngine implements Engine {
 
     private final Map<String, Boolean> options;
 
-    // Arduino port mapping
+
     MapperFactory mappingFactory;
     Mapper portMapping;
+
     PluginManager pluginManager;
     private String source;
-
-    // Execution variables
-//    private final int startSetupIndex = -1;
-//    private final int endSetupIndex = -1;
-//    private final int startLoopIndex = -1;
-//    private final int endLoopIndex = -1;
 
     public AcoEngine() {
         options = new HashMap<>();
 
-        // TODO: add a menu for mapper selection
         mappingFactory = new MapperFactory();
         pluginManager = new PluginManager();
-
-//        constants = new ArrayList<>();
     }
 
     @Override
@@ -60,6 +52,8 @@ public class AcoEngine implements Engine {
 
     @Override
     public void optimize() {
+        if(portMapping == null) return;
+
         this.options.forEach((pluginName, isActive) -> {
             if (isActive) {
                 try {
@@ -70,66 +64,6 @@ public class AcoEngine implements Engine {
             }
         });
     }
-
-//    private void removeSetupAndLoop() {
-//        String setup = source.substring(startSetupIndex, endSetupIndex);
-//        String loop = source.substring(startLoopIndex, endLoopIndex);
-//    }
-
-//    private void setSetupIndexes() {
-//        final String setupRegex = "void setup\\(\\)\\s*\\{";
-//        Matcher setupMatcher = getRegexMatcher(setupRegex);
-//
-//        if (setupMatcher.find()) {
-//            startSetupIndex = setupMatcher.end() + 1; // Remove first bracket
-//
-//            int childIndex = 0;
-//            char[] remainingCharsArray = source.substring(startSetupIndex).toCharArray();
-//            for (int i = 0; i < remainingCharsArray.length; i++) {
-//                if (remainingCharsArray[i] == '{') childIndex++;
-//                else if (remainingCharsArray[i] == '}') {
-//                    childIndex--;
-//                    if (childIndex < 0) {
-//                        endSetupIndex = (i + startSetupIndex) - 1; // Remove last bracket
-//                        break;
-//                    }
-//                }
-//            }
-//            // TODO: manage setup end not fount
-//        } else {
-//            // TODO: manage setup start not fount
-//        }
-//    }
-//
-//    private Matcher getRegexMatcher(String regex) {
-//        final Pattern setupPattern = Pattern.compile(regex, Pattern.DOTALL);
-//        return setupPattern.matcher(source);
-//    }
-//
-//    private void setLoopIndexes() {
-//        final String loopRegex = "void loop\\(\\)\\s*\\{";
-//        Matcher loopMatcher = getRegexMatcher(loopRegex);
-//
-//        if (loopMatcher.find()) {
-//            startSetupIndex = loopMatcher.end() + 1; // Remove first bracket
-//
-//            int childIndex = 0;
-//            char[] remainingCharsArray = source.substring(startSetupIndex).toCharArray();
-//            for (int i = 0; i < remainingCharsArray.length; i++) {
-//                if (remainingCharsArray[i] == '{') childIndex++;
-//                else if (remainingCharsArray[i] == '}') {
-//                    childIndex--;
-//                    if (childIndex < 0) {
-//                        endSetupIndex = (i + startSetupIndex) - 1; // Remove last bracket
-//                        break;
-//                    }
-//                }
-//            }
-//            // TODO: manage setup end not fount
-//        } else {
-//            // TODO: manage setup start not fount
-//        }
-//    }
 
     @Override
     public String getOutput() {
