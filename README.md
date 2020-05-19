@@ -24,7 +24,7 @@ All you have to do is:
  
 ![Blank Program](docs/start-program.png)
 
-**A more detailed guide can be found in /docs directory**
+**A more detailed guide can be found in /docs directory (Ongoing)**
 
 ## Optimization Example
 With the classic blink code:
