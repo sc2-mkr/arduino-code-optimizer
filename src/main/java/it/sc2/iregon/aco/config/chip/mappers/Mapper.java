@@ -2,17 +2,46 @@ package it.sc2.iregon.aco.config.chip.mappers;
 
 import it.sc2.iregon.aco.config.chip.structure.Pin;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-public interface Mapper {
-    void addPin(String logicIndex, String chipIndex, String port, String portIndex);
+public abstract class Mapper {
 
-    void removePin(String logicIndex);
+    private List<Pin> pins;
 
-    Optional<Pin> findPinByLogicalName(String logicIndex);
+    private String mapName;
 
-    String getMapName();
+    public Mapper(String mapName) {
+        this.mapName = mapName;
+        this.pins = new ArrayList<Pin>();
+    }
 
-    String getConstantValue(String constant);
+    public void addPin(String logicIndex, String chipIndex, String port, String portIndex) {
+        pins.add(new Pin(logicIndex, chipIndex, port, portIndex));
+    }
+
+    public void removePin(String logicIndex) {
+        for (Pin pin : pins) {
+            if (pin.getLogicIndex().equals(logicIndex)) {
+                pins.remove(pin);
+                break;
+            }
+        }
+    }
+
+    public Optional<Pin> findPinByLogicalName(String logicIndex) {
+        for (Pin pin : pins) {
+            if (pin.getLogicIndex().equals(logicIndex)) {
+                return Optional.of(pin);
+            }
+        }
+        return Optional.empty();
+    }
+
+    public String getMapName() {
+        return mapName;
+    };
+
+    public abstract String getConstantValue(String constant);
 }

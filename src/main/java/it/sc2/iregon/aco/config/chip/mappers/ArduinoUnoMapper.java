@@ -1,15 +1,14 @@
 package it.sc2.iregon.aco.config.chip.mappers;
 
-import it.sc2.iregon.aco.config.chip.structure.Pin;
-
 import java.util.*;
 
-public class ArduinoUnoMapper implements Mapper {
+public class ArduinoUnoMapper extends Mapper {
 
-    private final List<Pin> pins = new ArrayList<Pin>();
     private final Map<String, String> constants = new HashMap<String, String>();
 
     public ArduinoUnoMapper() {
+        super("Arduino UNO");
+
         // Add all pins
         addPin("0", "2", "D", "0"); // RX
         addPin("1", "3", "D", "1"); // TX
@@ -28,36 +27,6 @@ public class ArduinoUnoMapper implements Mapper {
 
         // Add built-in constants
         constants.put("LED_BUILTIN", "13");
-    }
-
-    @Override
-    public void addPin(String logicIndex, String chipIndex, String port, String portIndex) {
-        pins.add(new Pin(logicIndex, chipIndex, port, portIndex));
-    }
-
-    @Override
-    public void removePin(String logicIndex) {
-        for (Pin pin : pins) {
-            if (pin.getLogicIndex().equals(logicIndex)) {
-                pins.remove(pin);
-                break;
-            }
-        }
-    }
-
-    @Override
-    public Optional<Pin> findPinByLogicalName(String logicIndex) {
-        for (Pin pin : pins) {
-            if (pin.getLogicIndex().equals(logicIndex)) {
-                return Optional.of(pin);
-            }
-        }
-        return Optional.empty();
-    }
-
-    @Override
-    public String getMapName() {
-        return "Arduino UNO";
     }
 
     @Override
