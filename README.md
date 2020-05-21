@@ -12,6 +12,20 @@ All references to the ports used by the microcontroller can be found in its data
 For launching this software you need:
  - Java 11
 
+### Usage
+The program is designed for the simplest user experience
+![Blank Program](docs/blank-program.png)
+
+All you have to do is:
+ - select your Arduino's code file
+ - select the plugins you want to use
+ - select the board
+ - click "Optimize" and enjoy
+ 
+![Blank Program](docs/start-program.png)
+
+**A more detailed guide can be found in /docs directory (Ongoing)**
+
 ## Optimization Example
 With the classic blink code:
 ```c++
