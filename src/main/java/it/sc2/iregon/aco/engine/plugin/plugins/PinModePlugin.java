@@ -67,7 +67,7 @@ public class PinModePlugin implements Plugin {
                                 pinToReplace.get().getPort() +
                                 pinToReplace.get().getPortIndex() +
                                 ")";
-                    System.out.println("Replacement: " + replacement);
+//                    System.out.println("Replacement: " + replacement);
                     matcher.appendReplacement(sb, replacement);
                 } else {
                     // TODO: manage pin not found

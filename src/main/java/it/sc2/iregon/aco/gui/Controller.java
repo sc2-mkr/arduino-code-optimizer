@@ -80,7 +80,7 @@ public class Controller {
                     plugin.getImpactType(),
                     plugin.getViewOption().isEnableAsDefault());
             vboxOptions.getChildren().add(checkBox);
-            System.out.println("Added plugin: " + checkBox.getText());
+//            System.out.println("Added plugin: " + checkBox.getText());
         });
 
         // Add chips mapper to combobox
@@ -101,7 +101,7 @@ public class Controller {
 
         checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             engine.setOption(checkBox.getText(), newValue);
-            System.out.println("Plugin: " + checkBox.getText() + " state: " + newValue);
+//            System.out.println("Plugin: " + checkBox.getText() + " state: " + newValue);
         });
 
         return checkBox;

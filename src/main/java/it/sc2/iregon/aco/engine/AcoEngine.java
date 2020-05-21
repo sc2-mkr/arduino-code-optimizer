@@ -18,7 +18,6 @@ public class AcoEngine implements Engine {
 
     private final Map<String, Boolean> options;
 
-
     MapperFactory mappingFactory;
     Mapper portMapping;
 
