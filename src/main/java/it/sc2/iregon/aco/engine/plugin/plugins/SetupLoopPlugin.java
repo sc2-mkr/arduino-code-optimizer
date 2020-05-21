@@ -20,7 +20,7 @@ public class SetupLoopPlugin implements Plugin{
     private int endLoopIndex;
 
     public SetupLoopPlugin() {
-        this.viewOption = new ViewOption(false);
+        this.viewOption = new ViewOption(1, false);
     }
 
     @Override

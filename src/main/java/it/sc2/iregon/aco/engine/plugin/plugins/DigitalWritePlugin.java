@@ -22,7 +22,7 @@ public class DigitalWritePlugin implements Plugin {
     private Mapper pinMapper;
 
     public DigitalWritePlugin() {
-        this.viewOption = new ViewOption(true);
+        this.viewOption = new ViewOption(3, true);
         constants = new ArrayList<>();
     }
 

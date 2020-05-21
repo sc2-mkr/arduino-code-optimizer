@@ -22,7 +22,7 @@ public class PinModePlugin implements Plugin {
     private ViewOption viewOption;
 
     public PinModePlugin() {
-        this.viewOption = new ViewOption(true);
+        this.viewOption = new ViewOption(2, true);
         constants = new ArrayList<>();
     }
 

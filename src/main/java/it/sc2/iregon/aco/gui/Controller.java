@@ -19,6 +19,7 @@ import org.apache.commons.io.FilenameUtils;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class Controller {
@@ -74,7 +75,9 @@ public class Controller {
         engine = new AcoEngine();
 
         // Add option from loaded plugins
-        engine.getAllPlugins().forEach(plugin -> {
+        engine.getAllPlugins().stream()
+                .sorted(Comparator.comparing(plugin -> plugin.getViewOption().getListPosition()))
+                .forEach(plugin -> {
             JFXCheckBox checkBox = generateOptionCheckbox(
                     plugin.getPluginName(),
                     plugin.getImpactType(),
