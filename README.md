@@ -40,7 +40,7 @@ void loop() {
 ```
 we have 1460 bytes used. 
 
-But, changing pinMode and digitalWrite functions with the relative port manipulation instruction:
+But, replacing ```pinMode()``` and ```digitalWrite()``` functions with the relative port manipulation instruction:
 ```c++
 void setup() {
   DDRB |= (1<<DDB5);
@@ -55,7 +55,7 @@ void loop() {
 ```
 we only have 854 bytes used in memory, 42% less memory used.
 
-And, if we delete the setup and loop cycles:
+And, if we replace the ```setup()``` and ```loop()``` functions with the ```main()``` function:
 ```c++
 int main() {
   DDRB |= (1<<DDB5);
