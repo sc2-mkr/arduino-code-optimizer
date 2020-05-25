@@ -13,16 +13,14 @@ For launching this software you need:
  - Java 11
 
 ### Usage
-The program is designed for the simplest user experience
-![Blank Program](docs/blank-program.png)
+The program is designed for the simplest user experience.
+![Blank Program](docs/start-program.png)
 
 All you have to do is:
  - select your Arduino's code file
  - select the plugins you want to use
  - select the board
  - click "Optimize" and enjoy
- 
-![Blank Program](docs/start-program.png)
 
 **A more detailed guide can be found in /docs/manual directory (Ongoing)**
 
